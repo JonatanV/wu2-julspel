@@ -37,9 +37,15 @@ class State
         let player = newState.player;
 
         if (keys.Space && this.rocks > 0) {
+            if (speed == true) {
+                actors.push(Rock.create(player.pos, false, new Vector(10, 0)));
+            } else {
+                actors.push(Rock.create(player.pos, false, new Vector(-10, 0)));
+            }
             newState.rocks--;
-            actors.push(Rock.create(player.pos, false, new Vector(10, 0)));
+            
         }
+        
 
         if (this.level.touches(player.pos, player.size, "lava")) {
             return new State(this.level, actors, "lost", this.score, this.rocks);

@@ -1,5 +1,8 @@
+   var speed = true;
+
 class Player
 {
+
     constructor(pos, speed, prevX, prevY)
     {
         this.pos = pos;
@@ -7,7 +10,7 @@ class Player
         this.speed = speed;
         this.xOverlap = 4;
         this.xSpeed = 8;
-        this.ySpeed = 16;
+        this.ySpeed = 21;
         this.prevX = prevX;
         this.prevY = prevY;
     }
@@ -28,6 +31,12 @@ class Player
         if (keys.ArrowRight || keys.KeyD) currentXSpeed += this.xSpeed;
         let pos = this.pos;
         let movedX = pos.plus(new Vector(currentXSpeed * time, 0));
+
+        if (keys.ArrowLeft || keys.KeyA) {
+            speed = false;
+        } else if (keys.ArrowRight || keys.KeyD) {
+            speed = true;
+        }
 
         if (!state.level.touches(movedX, this.size, groundTypes)) {
             pos = movedX;
