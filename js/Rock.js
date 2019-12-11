@@ -3,7 +3,7 @@ class Rock
     constructor(pos, speed) {
         this.pos = pos;
         this.speed = speed;
-        this.size = new Vector(1, 1);
+        this.size = new Vector(0.7, 0.7);
     }
 
     get type()
@@ -24,10 +24,10 @@ class Rock
     collide = function(state, keys)
     {
         if (keys.KeyG) {
-            let rocks = state.rocks + 1;
+            let rocks = 30;
             console.log("GRAB ROCK ZOG ZOG " + rocks);
             let filtered = state.actors.filter(a => a != this);
-            return new State(state.level, filtered, state.status, state.score, rocks);
+            return new State(state.level, filtered, state.status, state.score, rocks, state.kastat);
         }
         return state;
     }

@@ -138,7 +138,11 @@ class Canvas {
             this.uiCtx.clearRect(0, 0, 80, 80);
             this.uiCtx.fillStyle = "black";
             this.uiCtx.font = '20px sans-serif';
-            this.uiCtx.fillText(state.score, 20, 20);        
+            this.uiCtx.fillText(state.score, 20, 20);   
+            this.uiCtx.fillText("100/" + state.health, 20, 20);
+            this.uiCtx.font = '14px sans-serif';
+            this.uiCtx.fillText("Lives: " + lives, 20, 40);
+            this.uiCtx.fillText("Hearts: " + state.score + "/" + state.itemCount, 20, 60);     
         }
     }
 

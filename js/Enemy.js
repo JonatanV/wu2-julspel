@@ -4,7 +4,7 @@ class Enemy
     {
         this.pos = pos;
         this.speed = speed;
-        this.size = new Vector(1, 1);
+        this.size = new Vector(2, 2);
         this.delta = delta;
         this.xSpeed = 3;
         this.prevX = prevX;
@@ -22,7 +22,12 @@ class Enemy
 
     collide = function(state)
     {
-        return new State(state.level, state.actors, "lost");
+        let currentHealth = state.health - 3;
+        console.log(currentHealth);
+        if (currentHealth <= 0) {
+            return new State(state.level, state.actors, "lost");
+        }
+        return new State(state.level, state.actors, state.status, state.score, state.rocks, currentHealth);
     }
 
 

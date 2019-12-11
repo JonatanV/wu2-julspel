@@ -10,7 +10,7 @@ class Player
         this.speed = speed;
         this.xOverlap = 4;
         this.xSpeed = 8;
-        this.ySpeed = 21;
+        this.ySpeed = 16;
         this.prevX = prevX;
         this.prevY = prevY;
     }
@@ -49,11 +49,13 @@ class Player
             pos = movedY;
         } else if ( (keys.ArrowUp || keys.KeyW) && currentYSpeed > 0) {
             if (currentYSpeed > 25) {
+                state.health = Math.floor(state.health - currentYSpeed);
                 console.log("ouch cant dodge by uparrow"); // call on function for taking damage                
             }
             currentYSpeed = -this.ySpeed;
         } else {
             if (currentYSpeed > 25) {
+                state.health = Math.floor(state.health - currentYSpeed);
                 console.log("ouch"); // call on function for taking damage                
             }
             currentYSpeed = 0;
