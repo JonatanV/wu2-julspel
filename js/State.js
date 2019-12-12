@@ -15,7 +15,6 @@ class State {
         this.timer = timer || 0;
         this.health = health || 3;
         this.itemCount = this.items;
-        this.rockCount = this.rocks;
     }
 
     static start(level) {
