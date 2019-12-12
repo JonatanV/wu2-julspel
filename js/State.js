@@ -13,17 +13,37 @@ class State {
         this.maxScore = actors.filter(x => x === Item).length;
         this.kastat = kastat || 0;
         this.timer = timer || 0;
-        this.health = health || 100;
+        this.health = health || 3;
         this.itemCount = this.items;
+        this.rockCount = this.rocks;
     }
 
     static start(level) {
         return new State(level, level.startActors, "playing", 0, 0);
-        
     }
 
     get player() {
         return this.actors.find(a => a.type == "player");
+    }
+
+    get enemies() {
+        let temp = [];
+        for (let actor of this.actors) {
+            if (actor.type == "enemy") {
+                temp.push(actor);
+            }
+        }
+        return temp;
+    }
+
+    get items() {
+        let temp = [];
+        for (let actor of this.actors) {
+            if (actor.type == "item") {
+                temp.push(actor);
+            }
+        }
+        return temp.length;
     }
 
     overlap = function (actor1, actor2) {
@@ -41,19 +61,19 @@ class State {
 
         let player = newState.player;
 
-        if (canShoot == false){
+        if (canShoot == false) {
             shootDelay += -shootMinimize;
             if (shootDelay <= 0) {
-                shootDelay = 2; 
+                shootDelay = 2;
                 canShoot = true;
             }
         }
 
         if (keys.Space && this.rocks > 0) {
-            if (canShoot == true){
+            if (canShoot == true) {
                 if (speed == true) {
                     actors.push(Rock.create(player.pos, false, new Vector(10, 0)));
-                    newState.rocks--;                    
+                    newState.rocks--;
                     canShoot = false;
                 } else {
                     actors.push(Rock.create(player.pos, false, new Vector(-10, 0)));
@@ -61,19 +81,26 @@ class State {
                     canShoot = false;
                 }
             }
-                console.log(this.kastat);
+            console.log(this.kastat);
 
-        }
-
-
-        if (this.level.touches(player.pos, player.size, "lava")) {
-            return new State(this.level, actors, "lost", this.score, this.rocks, this.kastat, this.timer);
         }
 
         for (let actor of actors) {
             if (actor != player && this.overlap(actor, player)) {
                 newState = actor.collide(newState, keys);
             }
+            else if (actor.type == "rock") {
+                // här luktar det tveksam kod
+                let enemies = newState.enemies;
+                for (let i = 0; i < enemies.length; i++) {
+                    if (this.overlap(actor, enemies[i])) {
+                        newState.actors = newState.actors.filter(a => a != enemies[i]);
+                    }
+                }
+            }
+        }
+        if (this.level.touches(player.pos, player.size, ["lava"]) || newState.health <= 0) {
+            return new State(this.level, actors, "lost", this.score);
         }
 
         return newState;

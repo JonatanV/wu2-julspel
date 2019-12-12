@@ -135,14 +135,11 @@ class Canvas {
             this.uiCtx.textAlign = "center";
             this.uiCtx.fillText(state.status, width / 2, height / 2 - 40);
         } else {
-            this.uiCtx.clearRect(0, 0, 80, 80);
+            this.uiCtx.clearRect(0, 0, 300, 100);
             this.uiCtx.fillStyle = "black";
             this.uiCtx.font = '20px sans-serif';
-            this.uiCtx.fillText(state.score, 20, 20);   
-            this.uiCtx.fillText("100/" + state.health, 20, 20);
-            this.uiCtx.font = '14px sans-serif';
-            this.uiCtx.fillText("Lives: " + lives, 20, 40);
-            this.uiCtx.fillText("Hearts: " + state.score + "/" + state.itemCount, 20, 60);     
+            this.uiCtx.fillText("Hearts: " + state.score + "/" + state.itemCount, 20, 30);
+            this.uiCtx.fillText("Ammo: " + state.rocks + state.rockCount, 20, 50)  
         }
     }
 

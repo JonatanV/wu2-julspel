@@ -1,6 +1,8 @@
 let width = 1024;
 let height = 768;
 let scale = 32;
+let level = 0;
+let lives = 3;
 
 let images = [];
 
