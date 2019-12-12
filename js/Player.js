@@ -10,7 +10,7 @@ class Player
         this.speed = speed;
         this.xOverlap = 4;
         this.xSpeed = 8;
-        this.ySpeed = 16;
+        this.ySpeed = 18.5;
         this.prevX = prevX;
         this.prevY = prevY;
     }

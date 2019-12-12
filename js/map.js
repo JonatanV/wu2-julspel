@@ -155,5 +155,7 @@ let sources = {
         offsetX: 352,
         offsetY: 320
     },
+
     map1: {src: 'img/maps/kartatest.png'}
+
 };
