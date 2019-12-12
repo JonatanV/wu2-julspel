@@ -155,5 +155,5 @@ let sources = {
         offsetX: 352,
         offsetY: 320
     },
-    map1: {src: 'img/maps/map5.png'}
+    map1: {src: 'img/maps/mapsm.png'}
 };
