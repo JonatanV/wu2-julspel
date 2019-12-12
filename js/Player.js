@@ -1,5 +1,8 @@
+   var speed = true;
+
 class Player
 {
+
     constructor(pos, speed, prevX, prevY)
     {
         this.pos = pos;
@@ -7,7 +10,7 @@ class Player
         this.speed = speed;
         this.xOverlap = 4;
         this.xSpeed = 8;
-        this.ySpeed = 18.5;
+        this.ySpeed = 16;
         this.prevX = prevX;
         this.prevY = prevY;
     }
@@ -29,6 +32,12 @@ class Player
         let pos = this.pos;
         let movedX = pos.plus(new Vector(currentXSpeed * time, 0));
 
+        if (keys.ArrowLeft || keys.KeyA) {
+            speed = false;
+        } else if (keys.ArrowRight || keys.KeyD) {
+            speed = true;
+        }
+
         if (!state.level.touches(movedX, this.size, groundTypes)) {
             pos = movedX;
         }
@@ -40,11 +49,13 @@ class Player
             pos = movedY;
         } else if ( (keys.ArrowUp || keys.KeyW) && currentYSpeed > 0) {
             if (currentYSpeed > 25) {
+                state.health = Math.floor(state.health - currentYSpeed);
                 console.log("ouch cant dodge by uparrow"); // call on function for taking damage                
             }
             currentYSpeed = -this.ySpeed;
         } else {
             if (currentYSpeed > 25) {
+                state.health = Math.floor(state.health - currentYSpeed);
                 console.log("ouch"); // call on function for taking damage                
             }
             currentYSpeed = 0;
