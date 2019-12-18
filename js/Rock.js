@@ -3,7 +3,7 @@ class Rock
     constructor(pos, speed) {
         this.pos = pos;
         this.speed = speed;
-        this.size = new Vector(0.7, 0.7);
+        this.size = new Vector(1.2, 0.7);
     }
 
     get type()
@@ -11,11 +11,11 @@ class Rock
         return "rock";
     }
 
-    static create(pos, color, speed) 
+    static create(pos, color, speed, size) 
     {
         if (speed ) {
             console.log(speed)
-            return new Rock(pos, speed);
+            return new Rock(pos, speed, size);
         } else {
             return new Rock(pos, new Vector(0, 0));
         }

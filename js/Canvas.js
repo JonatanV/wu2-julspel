@@ -102,6 +102,7 @@ class Canvas {
         let _top = (height - top) * 32;
         let _left = left * 32;
         // this.bgCtx.fillStyle = "pink";
+        this.bgCtx.drawImage(sources.background.image, 0, 0, this.width, this.height);
 
         // this.bgCtx.fillRect(500, 200, 200, 200);
         // this.bgCtx.drawImage(sources.mountain.image, 512, _top + 128, sources.mountain.width, sources.mountain.height);
@@ -165,12 +166,14 @@ class Canvas {
             if (actor.type == "player") {
                 this.drawPlayer(actor, x, y, width, height);
             } else if (actor.type == "enemy") {
-                // this.flipPlayer = actor.speed.x > 0;
+                /*if (actor.speed.x != 0) {
+                    this.flipPlayer = actor.speed.x < 0;
+                }*/
                 let tile = Math.floor(Date.now() / 60) % 4;
                 // this.actorsCtx.save();
-                // if (this.flipPlayer) {
-                //     this.flipHorizontally(this.actorsCtx, x + width / 2);
-                // }
+                /*if (this.flipPlayer) {
+                    this.flipHorizontally(this.actorsCtx, x + width / 2);
+                }*/
                 let tileX = tile * sources.enemy.width;
                 // this.actorsCtx.clearRect(actor.prevX , actor.prevY , width, height);
                 this.actorsCtx.drawImage(sources.enemy.image, tileX, 0, sources.enemy.width, sources.enemy.height, x, y, width, height);
@@ -194,16 +197,16 @@ class Canvas {
         // y -= playerOverlap;
 
         if (player.speed.x != 0) {
-            this.flipPlayer = player.speed.x > 0;
+            this.flipPlayer = player.speed.x < 0;
         }
 
-        let tile = 1;
+        let tile = 0;
         let jump = 0;
         if (player.speed.y != 0) {
-            tile = Math.floor(Date.now() / 60) % 13;
+            //tile = Math.floor(Date.now() / 60) % 13;
             jump = 1;
         } else if (player.speed.x != 0) {
-            tile = Math.floor(Date.now() / 60) % 9;
+            tile = Math.floor(Date.now() / 60) % 4;
         }
 
         // this.actorsCtx.clearRect(player.prevX , player.prevY , width, height);
@@ -212,7 +215,7 @@ class Canvas {
             this.flipHorizontally(this.actorsCtx, x + width / 2);
         }
         let tileX = tile * sources.player.width;
-        let tileY = jump * sources.player.height;
+        let tileY = 0 * sources.player.height;
         
         this.actorsCtx.drawImage(sources.player.image, tileX, tileY, sources.player.width, sources.player.height, x, y, width, height);
         this.actorsCtx.restore();

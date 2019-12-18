@@ -20,31 +20,31 @@ const groundTypes = ["grass", "ground", "platformC", "platformR", "platformL"];
 
 let sources = {
     player: {
-        src: 'img/sprites/cavedude_side2.png',
-        srcWidth: 1248,
-        srcHeight: 186,
-        width: 96,
-        height: 96,
+        src: 'img/sprites/Spritesheet.png',
+        srcWidth: 480,
+        srcHeight: 288,
+        width: 128,
+        height: 126,
         offsetX: 0,
-        offsetY: 512
+        offsetY: 160
     },
     enemy: {
-        src: 'img/sprites/player.png',
-        srcWidth: 128,
-        srcHeight: 32,
-        width: 32,
-        height: 32,
+        src: 'img/sprites/Spritesheet.png',
+        srcWidth: 378,
+        srcHeight: 480,
+        width: 96,
+        height: 100,
         offsetX: 0,
-        offsetY: 0
+        offsetY: 358
     },
     item: {
-        src: 'img/sprites/cavedude_side2.png',
-        srcWidth: 32,
-        srcHeight: 32,
-        width: 96,
-        height: 96,
-        offsetX: 192,
-        offsetY: 480
+        src: 'img/sprites/Spritesheet.png',
+        srcWidth: 19,
+        srcHeight: 20,
+        width: 19,
+        height: 20,
+        offsetX: 359,
+        offsetY: 523
     },
     grass: {
         src: 'img/sprites/cavedude_side2.png',
@@ -101,13 +101,13 @@ let sources = {
         offsetY: 480
     },
     rock: {
-        src: 'img/sprites/cavedude_side2.png',
-        srcWidth: 32,
-        srcHeight: 32,
-        width: 32,
-        height: 32,
-        offsetX: 320,
-        offsetY: 480
+        src: 'img/sprites/Spritesheet.png',
+        srcWidth: 63,
+        srcHeight: 33,
+        width: 63,
+        height: 33,
+        offsetX: 482,
+        offsetY: 384
     },
     mountains: {
         src: 'img/sprites/cavedude_side2.png',
@@ -156,6 +156,7 @@ let sources = {
         offsetY: 320
     },
 
-    map1: {src: 'img/maps/kartatest.png'}
+    map1: {src: 'img/maps/mapsm.png'},
+    background: {src: 'img/bakgrund.png'}
 
 };

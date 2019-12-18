@@ -70,17 +70,20 @@ class State {
 
         if (keys.Space && this.rocks > 0) {
             if (canShoot == true) {
+                let rockPos = player.pos;
                 if (speed == true) {
-                    actors.push(Rock.create(player.pos, false, new Vector(10, 0)));
+                    rockPos = rockPos.plus(new Vector(1, 1.15));
+                    console.log(rockPos);
+                    actors.push(Rock.create(rockPos, false, new Vector(10, 0)));
                     newState.rocks--;
                     canShoot = false;
                 } else {
-                    actors.push(Rock.create(player.pos, false, new Vector(-10, 0)));
+                    rockPos = rockPos.plus(new Vector(1, 1.15));                    
+                    actors.push(Rock.create(rockPos, false, new Vector(-10, 0)));
                     newState.rocks--;
                     canShoot = false;
                 }
             }
-            console.log(this.kastat);
 
         }
 
